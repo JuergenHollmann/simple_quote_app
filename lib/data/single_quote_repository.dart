@@ -11,3 +11,4 @@ class SingleQuoteRepository extends QuoteRepository {
   @override
   QuoteData getQuote() => _quoteData;
 }
+

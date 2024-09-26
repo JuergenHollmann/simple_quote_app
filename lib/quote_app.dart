@@ -2,14 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:simple_quote_app/data/quote_repository.dart';
 import 'package:simple_quote_app/model/quote_data.dart';
 
-class QuoteApp extends StatelessWidget {
+class QuoteApp extends StatefulWidget {
   const QuoteApp({super.key, required this.repository});
-
   final QuoteRepository repository;
 
   @override
+  State<QuoteApp> createState() => QuoteAppState();
+}
+
+class QuoteAppState extends State<QuoteApp> {
+  @override
   Widget build(BuildContext context) {
-    final QuoteData quote = repository.getQuote();
+    final QuoteData quote = widget.repository.getQuote();
     final String author = quote.author;
     final String text = quote.text;
     final int ranking = quote.ranking;
@@ -35,11 +39,19 @@ class QuoteApp extends StatelessWidget {
               const SizedBox(height: 64),
               Text(
                 text,
-                //style: const TextStyle(fontSize: 16),
+                style: const TextStyle(
+                  fontSize: 18,
+                ),
               ),
               Text("- $author"),
               const SizedBox(height: 16),
               Text("Ranking: $ranking/10"),
+              const SizedBox(height: 16),
+              ElevatedButton(
+                  onPressed: () {
+                    setState(() {});
+                  },
+                  child: const Text("Neues Zitat zeigen"))
             ],
           ),
         ),
